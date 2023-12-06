@@ -39,7 +39,6 @@ export default class NewBill {
             // Logique déplacé ici
             const formData = new FormData();
             const email = JSON.parse(localStorage.getItem('user')).email;
-            console.log(this.file);
             formData.append('file', this.file);
             formData.append('email', email);
             this.store
@@ -51,8 +50,6 @@ export default class NewBill {
                     },
                 })
                 .then(({ fileUrl, key }) => {
-                    console.log(fileUrl);
-                    console.log(key);
                     this.billId = key;
                     this.fileUrl = fileUrl;
 
@@ -79,6 +76,7 @@ export default class NewBill {
     };
 
     // not need to cover this function by tests
+    /* istanbul ignore next */
     updateBill = (bill) => {
         if (this.store) {
             this.store
